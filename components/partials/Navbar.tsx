@@ -66,7 +66,7 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-white flex items-center justify-between px-6 py-4 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white flex items-center justify-between px-6 py-4 shadow-sm z-50 ">
       {/* Logo */}
       <div className="text-xl font-bold">
         <Link href="/">

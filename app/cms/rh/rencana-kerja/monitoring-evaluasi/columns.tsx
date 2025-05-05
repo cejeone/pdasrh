@@ -31,42 +31,74 @@ export const columns: ColumnDef<Nursery>[] = [
     ),
   },
   {
-    accessorKey: "persemaian",
+    accessorKey: "nomor",
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-        PERSEMAIAN <ArrowUpDown className="ml-2 h-4 w-4" />
+        NOMOR <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
   {
-    accessorKey: "bpdas",
+    accessorKey: "ref_kegiatan",
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-        BPDAS <ArrowUpDown className="ml-2 h-4 w-4" />
+        REF KEGIATAN <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
   {
-    accessorKey: "lokasi",
+    accessorKey: "kontrak",
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-        LOKASI <ArrowUpDown className="ml-2 h-4 w-4" />
+        KONTRAK <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
   {
-    accessorKey: "target",
+    accessorKey: "rantek",
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-        TARGET <ArrowUpDown className="ml-2 h-4 w-4" />
+        RANTEK <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
   {
-    accessorKey: "realisasi",
+    accessorKey: "tanggal",
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-        REALISASI <ArrowUpDown className="ml-2 h-4 w-4" />
+        TANGGAL <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "kriteria",
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        KRITERIA <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "pelaksana",
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        PELAKSANA <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "luas",
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        LUAS(HA) <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        STATUS <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
@@ -84,12 +116,12 @@ export const columns: ColumnDef<Nursery>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem asChild>
-              <Link href={`/cms/ppth/administrasi/persemaian/${id}/edit`}>
+              <Link href={`/cms/rh/rencana-kerja/monitoring-evaluasi/${id}/edit`}>
                 <PencilIcon className="mr-2" /> Edit
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href={`/cms/ppth/administrasi/persemaian/${id}/detail`}>
+              <Link href={`/cms/rh/rencana-kerja/monitoring-evaluasi/${id}/detail`}>
                 <InfoIcon className="mr-2" /> Detail
               </Link>
             </DropdownMenuItem>
