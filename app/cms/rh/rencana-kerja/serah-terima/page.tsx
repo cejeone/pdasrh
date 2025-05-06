@@ -13,7 +13,7 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 
-import { ChevronsLeft, ChevronsRight, ChevronLeft, ChevronRight, ChevronDown, Settings2Icon, Plus, Trash2Icon, List } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, ChevronLeft, ChevronRight, ChevronDown, Settings2Icon, Plus, Trash2Icon, FileText } from "lucide-react";
 
 import { columns } from "./columns";
 import { Nursery } from "./types";
@@ -41,139 +41,15 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 const data: Nursery[] = [
   {
     id: "1",
-    nomor: "MONEV_001",
-    ref_kegiatan: "KEG_001",
-    kontrak: "KTRK_001",
-    rantek: "RANTEK_001",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-001",
-    pelaksana: "TANI A",
-    luas: "120/200",
-    status: "diterima",
-  },
-  {
-    id: "2",
-    nomor: "MONEV_002",
-    ref_kegiatan: "KEG_002",
-    kontrak: "KTRK_002",
-    rantek: "RANTEK_002",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-002",
-    pelaksana: "TANI B",
-    luas: "100/200",
-    status: "diterima",
-  },
-  {
-    id: "3",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "4",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "5",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "6",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "7",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "8",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "9",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "10",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
-    status: "diterima",
-  },
-  {
-    id: "11",
-    nomor: "MONEV_003",
-    ref_kegiatan: "KEG_003",
-    kontrak: "KTRK_003",
-    rantek: "RANTEK_003",
-    tanggal: "2025-01-01",
-    kriteria: "KRITERIA-003",
-    pelaksana: "TANI A",
-    luas: "89/200",
+    nomor: "BAST_001",
+    kontrak: "KONTRAK_001",
+    kegiatan: "K-000-000-1",
+    dokumen: "doc_bast.pdf",
     status: "diterima",
   },
 ];
 
-export default function MonitoringEvaluasi() {
+export default function SerahTerima() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -223,12 +99,12 @@ export default function MonitoringEvaluasi() {
         <div className="flex flex-col">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <Breadcrumbs items={[{ label: "Rencana Kerja", href: "#" }, { label: "Monitoring & Evaluasi" }]} />
+              <Breadcrumbs items={[{ label: "Rencana Kerja", href: "#" }, { label: "Serah Terima" }]} />
               <div className="flex items-center gap-2 text-secondary-green">
-                <List />
-                <h1 className="text-2xl font-bold ">Monitoring & Evaluasi</h1>
+                <FileText />
+                <h1 className="text-2xl font-bold ">Serah Terima</h1>
               </div>
-              <p className="text-sm text-base-gray">Informasi terkait data Monitoring & Evaluasi</p>
+              <p className="text-sm text-base-gray">Informasi terkait data Serah Terima</p>
             </div>
             <Link href="monitoring-evaluasi/create">
               <Button variant="green">
@@ -256,9 +132,6 @@ export default function MonitoringEvaluasi() {
                 />
 
                 <Input placeholder="Cari..." value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} className="max-w-sm" />
-                <Button variant="outline" className="icon">
-                  <Settings2Icon /> Pelaksana
-                </Button>
               </div>
 
               <div className="menu-right flex gap-3">

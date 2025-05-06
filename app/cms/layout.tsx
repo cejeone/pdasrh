@@ -39,11 +39,11 @@ const sidebarItems = [
       {
         title: "Rencana Kerja",
         icon: <IconTransformPoint />,
-        url: "",
+        url: "/rh/rencana-kerja",
         submenus: [
           { name: "Program", url: "/rh/rencana-kerja/program", icon: <File className="w-4 h-4" /> },
           { name: "Kegiatan", url: "/rh/rencana-kerja/kegiatan", icon: <File className="w-4 h-4" /> },
-          { name: "Monitoring & Evaluasi", url: "/rh/rencana-kerja/monitoring", icon: <File className="w-4 h-4" /> },
+          { name: "Monitoring & Evaluasi", url: "/rh/rencana-kerja/monitoring-evaluasi", icon: <File className="w-4 h-4" /> },
           { name: "Serah Terima", url: "/rh/rencana-kerja/serah-terima", icon: <File className="w-4 h-4" /> },
         ],
       },
@@ -129,20 +129,33 @@ export default function CmsLayout({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname.replace(/^\/cms/, "");
 
   // Open matched menu on load
   useEffect(() => {
+    const newOpenMenus: { [key: string]: boolean } = {};
+
     for (const group of sidebarItems) {
       for (const item of group.items) {
-        if (item.submenus && item.submenus.some((submenu) => submenu.url === pathname)) {
+        const isMatched = item.submenus.some((submenu) => pathname.startsWith(submenu.url));
+        if (isMatched) {
           const menuKey = `${group.groupTitle}-${item.title}`;
-          setOpenMenus({ [menuKey]: true });
-          return;
+          newOpenMenus[menuKey] = true;
         }
       }
     }
+
+    setOpenMenus(newOpenMenus);
   }, [pathname]);
+
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) return null; // cegah render di server
 
   const toggleMenu = (menuKey: string) => {
     setOpenMenus((prev) => ({
@@ -193,7 +206,7 @@ export default function CmsLayout({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page Content */}
-        <main className="p-4 overflow-auto h-full">{children}</main>
+        <main className="px-4 py-2 overflow-auto h-full">{children}</main>
       </div>
     </div>
   );
@@ -210,6 +223,7 @@ function SidebarContent({
   openMenus: { [key: string]: boolean };
   pathname: string;
 }) {
+  const CMS_PREFIX = "/cms";
   return (
     <nav className="flex flex-col gap-2 px-2 overflow-y-auto">
       {sidebarItems.map((group) => (
@@ -250,9 +264,11 @@ function SidebarContent({
                   <div className="ml-8 flex flex-col gap-1 py-1">
                     {item.submenus.map((submenu) => (
                       <Link
-                        href={submenu.url}
+                        href={CMS_PREFIX + submenu.url}
                         key={submenu.name}
-                        className={`text-md py-1 font-light flex items-center gap-2 ${pathname === submenu.url ? "text-white font-bold" : "text-white/80 hover:text-white"}`}>
+                        className={`text-md py-1 font-light flex items-center gap-2 ${
+                          pathname.startsWith(submenu.url) ? "text-white font-bold" : "text-white/80 hover:text-white"
+                        }`}>
                         <span className="shrink-0 w-4 h-4">{submenu.icon}</span>
                         {submenu.name}
                       </Link>
