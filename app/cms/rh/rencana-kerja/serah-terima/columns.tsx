@@ -34,7 +34,7 @@ export const columns: ColumnDef<Nursery>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "nomor",
+    accessorKey: "nomor_bast",
     header: ({ column }) => (
       <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
         NOMOR <ArrowUpDown className="ml-2 h-4 w-4" />

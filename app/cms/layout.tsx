@@ -20,25 +20,25 @@ const sidebarItems = [
     items: [
       {
         title: "Dasbor",
-        icon: <IconChartHistogram />,
+        icon: <IconChartHistogram className="w-4 h-4" />,
         url: "/rh/dasbor",
         submenus: [],
       },
       {
         title: "Peta",
-        icon: <MapPin />,
+        icon: <MapPin className="w-4 h-4" />,
         url: "/rh/peta",
         submenus: [],
       },
       {
         title: "Tabular",
-        icon: <IconDatabase />,
+        icon: <IconDatabase className="w-4 h-4" />,
         url: "/rh/tabular",
         submenus: [],
       },
       {
         title: "Rencana Kerja",
-        icon: <IconTransformPoint />,
+        icon: <IconTransformPoint className="w-4 h-4" />,
         url: "/rh/rencana-kerja",
         submenus: [
           { name: "Program", url: "/rh/rencana-kerja/program", icon: <File className="w-4 h-4" /> },
@@ -49,13 +49,13 @@ const sidebarItems = [
       },
       {
         title: "Dokumen",
-        icon: <File />,
+        icon: <File className="w-4 h-4" />,
         url: "/rh/dokumen",
         submenus: [],
       },
       {
         title: "Konten",
-        icon: <Newspaper />,
+        icon: <Newspaper className="w-4 h-4" />,
         url: "/rh/konten",
         submenus: [],
       },
@@ -64,11 +64,11 @@ const sidebarItems = [
 
   // superadmin
   {
-    groupTitle: "SUPERADMIN",
+    groupTitle: "SUPER ADMIN",
     items: [
       {
         title: "Master Data",
-        icon: <IconTransformPoint />,
+        icon: <IconTransformPoint className="w-4 h-4" />,
         url: "",
         submenus: [
           { name: "Pelaku Usaha", url: "/master-data/pelaku-usaha", icon: <File className="w-4 h-4" /> },
@@ -79,7 +79,7 @@ const sidebarItems = [
       },
       {
         title: "Organisasi",
-        icon: <IconTransformPoint />,
+        icon: <IconTransformPoint className="w-4 h-4" />,
         url: "",
         submenus: [
           { name: "Eselon I", url: "/organisasi/eselon-i", icon: <File className="w-4 h-4" /> },
@@ -90,31 +90,31 @@ const sidebarItems = [
       },
       {
         title: "Institusi",
-        icon: <File />,
+        icon: <File className="w-4 h-4" />,
         url: "/institusi",
         submenus: [],
       },
       {
         title: "LOV",
-        icon: <Newspaper />,
+        icon: <Newspaper className="w-4 h-4" />,
         url: "/lov",
         submenus: [],
       },
       {
         title: "Konfigurasi Sistem",
-        icon: <Newspaper />,
+        icon: <Newspaper className="w-4 h-4" />,
         url: "/konfigurasi-sistem",
         submenus: [],
       },
       {
         title: "Integrasi",
-        icon: <Newspaper />,
+        icon: <Newspaper className="w-4 h-4" />,
         url: "/integrasi",
         submenus: [],
       },
       {
         title: "Manajemen Pengguna",
-        icon: <IconTransformPoint />,
+        icon: <IconTransformPoint className="w-4 h-4" />,
         url: "",
         submenus: [
           { name: "Pengguna", url: "/manajemen-pengguna/pengguna", icon: <File className="w-4 h-4" /> },
@@ -233,18 +233,28 @@ function SidebarContent({
             const menuKey = `${group.groupTitle}-${item.title}`;
             const isOpen = openMenus[menuKey];
             const hasSubmenus = item.submenus.length > 0;
+            const isActive = item.url && (pathname === item.url || pathname.startsWith(item.url + "/"));
 
-            const buttonContent = (
+            const menuButton = hasSubmenus ? (
               <Button
                 variant="ghost"
                 className={`flex items-center gap-2 py-2 w-full justify-start text-white text-md font-light hover:text-white hover:bg-[#074D28] ${isOpen ? "bg-[#074D28]" : ""}`}
-                onClick={() => hasSubmenus && toggleMenu(menuKey)}>
+                onClick={() => toggleMenu(menuKey)}>
                 <div className={`flex items-center ${collapsed ? "justify-center w-full" : "gap-2 w-full"}`}>
                   <span className="shrink-0">{item.icon}</span>
                   {!collapsed && <span className="truncate">{item.title}</span>}
                   {!collapsed && hasSubmenus && <span className="ml-auto">{isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}</span>}
                 </div>
               </Button>
+            ) : (
+              <Link
+                href={CMS_PREFIX + item.url}
+                className={`flex items-center ${
+                  collapsed ? "justify-center" : "justify-start"
+                } gap-2 py-2 px-4 rounded-md w-full  text-white text-md font-light hover:text-white hover:bg-[#074D28] ${isActive ? "bg-[#074D28] font-bold" : ""}`}>
+                <span className="shrink-0 w-4 h-4">{item.icon}</span>
+                {!collapsed && <span className="truncate">{item.title}</span>}
+              </Link>
             );
 
             return (
@@ -252,12 +262,12 @@ function SidebarContent({
                 {collapsed ? (
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
-                      <TooltipTrigger asChild>{buttonContent}</TooltipTrigger>
+                      <TooltipTrigger asChild>{menuButton}</TooltipTrigger>
                       <TooltipContent side="right">{item.title}</TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 ) : (
-                  buttonContent
+                  menuButton
                 )}
 
                 {!collapsed && hasSubmenus && isOpen && (

@@ -19,7 +19,7 @@ export default function LoginPage() {
 
     // Hardcode user admin
     if (email === "admin@kemenhut.go.id" && password === "Admin#123") {
-      router.push("/cms/ppth/administrasi/persemaian");
+      router.push("/cms");
     } else {
       setError("Email atau password salah");
     }

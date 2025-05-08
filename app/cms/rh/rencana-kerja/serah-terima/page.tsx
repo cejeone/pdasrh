@@ -41,9 +41,11 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 const data: Nursery[] = [
   {
     id: "1",
-    nomor: "BAST_001",
+    nomor_bast: "BAST_001",
     kontrak: "KONTRAK_001",
     kegiatan: "K-000-000-1",
+    tanggal: "",
+    deskripsi: "",
     dokumen: "doc_bast.pdf",
     status: "diterima",
   },
@@ -106,7 +108,7 @@ export default function SerahTerima() {
               </div>
               <p className="text-sm text-base-gray">Informasi terkait data Serah Terima</p>
             </div>
-            <Link href="monitoring-evaluasi/create">
+            <Link href="serah-terima/create">
               <Button variant="green">
                 <Plus />
                 Tambah Data
