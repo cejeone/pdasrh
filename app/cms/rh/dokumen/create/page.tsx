@@ -54,7 +54,7 @@ const dokumenFormSchema = z.object({
   status: z.string().min(1, "Wajib diisi"),
 });
 
-export default function MonitoringForm() {
+export default function DokumenForm() {
   const form = useDokumenForm();
   const [errors, setErrors] = useState<Record<string, string>>({});
 
